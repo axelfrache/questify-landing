@@ -36,10 +36,10 @@ export function HowItWorks() {
                     </p>
                 </div>
 
-                <div className="flex flex-col lg:flex-row items-stretch justify-center gap-4 lg:gap-0 max-w-6xl mx-auto">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
                     {steps.map((step, index) => (
-                        <div key={step.title} className="flex items-center">
-                            <div className="relative group w-64 h-full">
+                        <div key={step.title} className="relative">
+                            <div className="relative group h-full">
                                 <div className="flex flex-col items-center text-center p-6 rounded-2xl bg-card border border-border/50 shadow-sm hover:shadow-md hover:border-primary/30 transition-all duration-300 h-full">
                                     <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold shadow-lg z-10">
                                         {index + 1}
@@ -48,13 +48,13 @@ export function HowItWorks() {
                                         <step.icon className="w-8 h-8 text-primary" />
                                     </div>
                                     <h3 className="text-lg font-semibold mb-2">{step.title}</h3>
-                                    <p className="text-muted-foreground text-sm flex-1">{step.description}</p>
+                                    <p className="text-muted-foreground text-sm">{step.description}</p>
                                 </div>
                             </div>
 
                             {index < steps.length - 1 && (
-                                <div className="hidden lg:flex items-center justify-center w-12 mx-2">
-                                    <ChevronRight className="w-8 h-8 text-primary/50" />
+                                <div className="hidden lg:flex absolute top-1/2 -right-3 -translate-y-1/2 z-20">
+                                    <ChevronRight className="w-6 h-6 text-primary/50" />
                                 </div>
                             )}
                         </div>

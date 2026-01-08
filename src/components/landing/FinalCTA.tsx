@@ -8,7 +8,7 @@ export function FinalCTA() {
         <section className="py-24">
             <div className="container mx-auto px-6">
                 <div className="relative max-w-4xl mx-auto">
-                    <div className="relative bg-gradient-to-br from-card via-card to-secondary/50 border border-border/50 rounded-3xl p-12 md:p-16 text-center shadow-xl overflow-hidden">
+                    <div className="relative bg-gradient-to-br from-card via-card to-secondary/50 border border-border/50 rounded-3xl p-8 md:p-16 text-center shadow-xl overflow-hidden">
                         <LightRays
                             color="rgba(20, 184, 166, 0.1)"
                             count={5}
