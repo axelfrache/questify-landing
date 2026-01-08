@@ -27,7 +27,7 @@ export function FinalCTA() {
                             </h2>
 
                             <p className="text-lg text-muted-foreground mb-8 max-w-lg mx-auto">
-                                Join thousands of adventurers turning their goals into achievements.
+                                Join the adventurers turning their goals into achievements.
                             </p>
 
                             <Button size="lg" className="h-14 px-10 text-lg rounded-xl shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30 transition-all" asChild>

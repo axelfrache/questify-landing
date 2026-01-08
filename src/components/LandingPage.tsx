@@ -4,6 +4,7 @@ import { Features } from "./landing/Features";
 import { AppPreview } from "./landing/AppPreview";
 import { Philosophy } from "./landing/Philosophy";
 import { Mascot } from "./landing/Mascot";
+import { OpenSource } from "./landing/OpenSource";
 import { FinalCTA } from "./landing/FinalCTA";
 import { Footer } from "./landing/Footer";
 import { ThemeToggle } from "./ThemeToggle";
@@ -50,6 +51,7 @@ export function LandingPage() {
                 <AppPreview />
                 <Philosophy />
                 <Mascot />
+                <OpenSource />
                 <FinalCTA />
             </main>
 

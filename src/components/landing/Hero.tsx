@@ -46,7 +46,7 @@ export function Hero() {
                                 <ArrowRight className="ml-2 h-5 w-5" />
                             </a>
                         </Button>
-                        <Button variant="outline" size="lg" className="h-14 px-8 text-lg rounded-xl" asChild>
+                        <Button variant="outline" size="lg" className="h-14 px-8 text-lg rounded-xl hover:bg-primary/10 hover:text-primary hover:border-primary/50 transition-all" asChild>
                             <a href="#how-it-works">
                                 <Play className="mr-2 h-5 w-5" />
                                 See how it works
