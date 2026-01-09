@@ -34,7 +34,7 @@ export function HowItWorks() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10 max-w-6xl mx-auto">
           {steps.map((step, index) => (
             <div key={step.title} className="relative">
               <div className="relative group h-full">
@@ -51,7 +51,7 @@ export function HowItWorks() {
               </div>
 
               {index < steps.length - 1 && (
-                <div className="hidden lg:flex absolute top-1/2 -right-3 -translate-y-1/2 z-20">
+                <div className="hidden lg:flex absolute top-1/2 -translate-y-1/2 left-full translate-x-[calc(1.25rem-50%)] z-20">
                   <ChevronRight className="w-6 h-6 text-primary/50" />
                 </div>
               )}
