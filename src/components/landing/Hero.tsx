@@ -2,10 +2,32 @@ import { Button } from '@/components/ui/button';
 import { LightRays } from '@/components/ui/light-rays';
 import { AuroraText } from '@/components/ui/aurora-text';
 import { ArrowRight, Play } from 'lucide-react';
+import peakImage from '@/assets/peak.svg';
 
 export function Hero() {
   return (
     <section className="relative h-[100vh] flex items-center justify-center overflow-hidden">
+      {/* Base background gradient */}
+      <div className="absolute inset-0 bg-[radial-gradient(60%_50%_at_50%_40%,rgba(20,184,166,0.08),transparent_70%)]" />
+
+      {/* Mountain layer - visual anchor/socle, hidden on mobile for perf */}
+      <div
+        className="absolute inset-x-0 bottom-0 pointer-events-none hidden md:block"
+        aria-hidden="true"
+        style={{
+          height: 'clamp(300px, 55vh, 600px)',
+          backgroundImage: `url(${peakImage})`,
+          backgroundRepeat: 'no-repeat',
+          backgroundPosition: 'center 25%',
+          backgroundSize: 'cover',
+          opacity: 0.18,
+          filter: 'brightness(0.7) saturate(0.8)',
+          maskImage: 'linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 25%, rgba(0,0,0,1) 100%)',
+          WebkitMaskImage:
+            'linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 25%, rgba(0,0,0,1) 100%)',
+        }}
+      />
+
       <LightRays color="rgba(20, 184, 166, 0.15)" count={8} blur={40} speed={16} length="80vh" />
 
       <div className="relative z-10 container mx-auto px-6">
