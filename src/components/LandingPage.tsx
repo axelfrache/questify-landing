@@ -1,3 +1,4 @@
+import { Github } from 'lucide-react';
 import { Hero } from './landing/Hero';
 import { HowItWorks } from './landing/HowItWorks';
 import { Features } from './landing/Features';
@@ -8,6 +9,7 @@ import { OpenSource } from './landing/OpenSource';
 import { FinalCTA } from './landing/FinalCTA';
 import { Footer } from './landing/Footer';
 import { ThemeToggle } from './ThemeToggle';
+import { Button } from '@/components/ui/button';
 import questifyLogo from '@/assets/questify3d.svg';
 
 export function LandingPage() {
@@ -41,7 +43,22 @@ export function LandingPage() {
             </a>
           </nav>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2">
+            <Button
+              variant="ghost"
+              size="icon"
+              className="hidden md:inline-flex rounded-full hover:bg-primary/10 hover:text-primary"
+              asChild
+            >
+              <a
+                href="https://github.com/axelfrache/questify"
+                target="_blank"
+                rel="noopener noreferrer"
+                title="Star Questify on GitHub"
+              >
+                <Github className="h-5 w-5" />
+              </a>
+            </Button>
             <ThemeToggle />
             <a
               href="https://app.getquestify.com"
