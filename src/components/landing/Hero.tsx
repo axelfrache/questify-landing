@@ -1,5 +1,4 @@
 import { Button } from '@/components/ui/button';
-import { LightRays } from '@/components/ui/light-rays';
 import { AuroraText } from '@/components/ui/aurora-text';
 import { ArrowRight, Play } from 'lucide-react';
 import peakImage from '@/assets/peak.svg';
@@ -22,13 +21,12 @@ export function Hero() {
           backgroundSize: 'cover',
           opacity: 0.18,
           filter: 'brightness(0.7) saturate(0.8)',
-          maskImage: 'linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 25%, rgba(0,0,0,1) 100%)',
+          maskImage:
+            'linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 25%, rgba(0,0,0,1) 100%)',
           WebkitMaskImage:
             'linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 25%, rgba(0,0,0,1) 100%)',
         }}
       />
-
-      <LightRays color="rgba(20, 184, 166, 0.15)" count={8} blur={40} speed={16} length="80vh" />
 
       <div className="relative z-10 container mx-auto px-6">
         <div className="max-w-4xl mx-auto text-center">
