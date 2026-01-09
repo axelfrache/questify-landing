@@ -8,7 +8,7 @@ import { OpenSource } from './landing/OpenSource';
 import { FinalCTA } from './landing/FinalCTA';
 import { Footer } from './landing/Footer';
 import { ThemeToggle } from './ThemeToggle';
-import chappyLogo from '@/assets/chappy.svg';
+import questifyLogo from '@/assets/questify3d.svg';
 
 export function LandingPage() {
   return (
@@ -16,7 +16,7 @@ export function LandingPage() {
       <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-lg border-b border-border/50">
         <div className="container mx-auto px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <img src={chappyLogo} alt="Chappy" className="w-10 h-10" />
+            <img src={questifyLogo} alt="Questify" className="w-10 h-10" />
             <span className="font-bold text-xl">Questify</span>
           </div>
 
