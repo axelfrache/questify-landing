@@ -1,16 +1,30 @@
+import { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'motion/react';
 import { Button } from '@/components/ui/button';
 import { AuroraText } from '@/components/ui/aurora-text';
 import { ArrowRight, Play } from 'lucide-react';
 import peakImage from '@/assets/peak.svg';
 
 export function Hero() {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start start', 'end start'],
+  });
+
+  const mountainY = useTransform(scrollYProgress, [0, 1], [0, 350]);
+
   return (
-    <section className="relative h-[100vh] flex items-center justify-center overflow-hidden">
+    <section
+      ref={sectionRef}
+      className="relative h-[100vh] flex items-center justify-center overflow-hidden"
+    >
       {/* Base background gradient */}
       <div className="absolute inset-0 bg-[radial-gradient(60%_50%_at_50%_40%,rgba(20,184,166,0.08),transparent_70%)]" />
 
-      {/* Mountain layer - visual anchor, peak aligned with content area */}
-      <div
+      {/* Mountain layer - visual anchor with parallax effect */}
+      <motion.div
         className="absolute inset-x-0 bottom-0 pointer-events-none hidden md:block"
         aria-hidden="true"
         style={{
@@ -25,7 +39,14 @@ export function Hero() {
             'linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.4) 5%, rgba(0,0,0,0.9) 15%, rgba(0,0,0,1) 30%, rgba(0,0,0,1) 100%)',
           WebkitMaskImage:
             'linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.4) 5%, rgba(0,0,0,0.9) 15%, rgba(0,0,0,1) 30%, rgba(0,0,0,1) 100%)',
+          y: mountainY,
         }}
+      />
+
+      {/* Persistent bottom fade overlay - stays fixed while mountain moves */}
+      <div
+        className="absolute inset-x-0 bottom-0 h-72 pointer-events-none hidden md:block z-[5] bg-gradient-to-t from-background via-background/50 to-transparent"
+        aria-hidden="true"
       />
 
       <div className="relative z-10 container mx-auto px-6">
