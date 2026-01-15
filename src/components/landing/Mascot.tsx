@@ -3,16 +3,11 @@ import chappyMascot from '@/assets/chappy.svg';
 
 export function Mascot() {
   return (
-    <section className="py-24 bg-gradient-to-b from-secondary/30 to-background">
-      <div className="container mx-auto px-6">
-        <div className="max-w-3xl mx-auto text-center">
-          <div className="relative inline-flex items-center justify-center mb-10 w-80 h-80">
-            <Ripple
-              mainCircleSize={140}
-              mainCircleOpacity={0.12}
-              numCircles={4}
-              className="[mask-image:radial-gradient(circle,white_60%,transparent_100%)]"
-            />
+    <section className="py-24 bg-gradient-to-b from-secondary/30 to-background overflow-visible">
+      <div className="container mx-auto px-6 overflow-visible">
+        <div className="max-w-3xl mx-auto text-center overflow-visible">
+          <div className="relative inline-flex items-center justify-center mb-10 w-80 h-80 overflow-visible">
+            <Ripple mainCircleSize={140} mainCircleOpacity={0.12} numCircles={4} />
 
             <div className="relative z-10 animate-float-slow">
               <img src={chappyMascot} alt="Chappy mascot" className="w-28 h-28" />
