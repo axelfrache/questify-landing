@@ -1,12 +1,23 @@
-import { useRef } from 'react';
+import { useState, useRef } from 'react';
 import { motion, useScroll, useTransform } from 'motion/react';
 import { Button } from '@/components/ui/button';
 import { AuroraText } from '@/components/ui/aurora-text';
-import { ArrowRight, Play } from 'lucide-react';
+import { ArrowRight, Play, Copy, Check } from 'lucide-react';
 import peakImage from '@/assets/peak.svg';
 
 export function Hero() {
+  const [isCopied, setIsCopied] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
+
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText('curl -fsSL https://getquestify.com/install.sh | bash');
+      setIsCopied(true);
+      setTimeout(() => setIsCopied(false), 2000);
+    } catch (err) {
+      console.error('Failed to copy command', err);
+    }
+  };
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -81,28 +92,62 @@ export function Hero() {
             <span className="text-foreground font-medium">consistency</span>, not pressure.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-4">
-            <Button
-              size="lg"
-              className="h-14 px-8 text-lg rounded-xl shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30 transition-all"
-              asChild
-            >
-              <a href="https://app.getquestify.com">
-                Start your journey
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </a>
-            </Button>
-            <Button
-              variant="outline"
-              size="lg"
-              className="h-14 px-8 text-lg rounded-xl bg-background/50 border-border/50 backdrop-blur-sm hover:bg-primary/10 hover:text-primary hover:border-primary/50 transition-all"
-              asChild
-            >
-              <a href="#how-it-works">
-                <Play className="mr-2 h-5 w-5" />
-                See how it works
-              </a>
-            </Button>
+          <div className="flex flex-col items-center justify-center gap-6">
+            {/* Primary Actions */}
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Button
+                size="lg"
+                className="h-14 px-8 text-lg rounded-xl shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30 transition-all font-medium text-base sm:text-lg"
+                asChild
+              >
+                <a href="https://app.getquestify.com">
+                  Start your journey
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </a>
+              </Button>
+              <Button
+                variant="outline"
+                size="lg"
+                className="h-14 px-8 rounded-xl bg-background/50 border-border/50 backdrop-blur-sm hover:bg-primary/10 hover:text-primary transition-all font-medium text-base sm:text-lg"
+                asChild
+              >
+                <a href="#how-it-works">
+                  <Play className="mr-2 h-5 w-5" />
+                  See how it works
+                </a>
+              </Button>
+            </div>
+
+            {/* Subtle Installation Command */}
+            <div className="mt-6 flex flex-col items-center space-y-3 w-full sm:w-[80%] max-w-sm">
+              <span className="text-xs text-muted-foreground/60">Prefer to self-host?</span>
+              <div className="w-full relative group">
+                <div className="absolute -inset-1 bg-gradient-to-r from-primary/30 via-primary/10 to-primary/30 rounded-xl blur-md opacity-0 group-hover:opacity-40 transition duration-500"></div>
+                <div className="relative flex items-center justify-between pl-3 pr-2 py-2 bg-[#09090b] text-zinc-300 rounded-lg border border-zinc-800 shadow-sm overflow-hidden text-sm transition-all group-hover:border-zinc-700">
+                  <code className="relative flex-1 text-left font-mono truncate mr-2 flex items-center">
+                    <span className="text-zinc-500 select-none mr-2 ml-1">$</span>
+                    <span className="text-[#f97583]">curl</span>
+                    <span className="text-zinc-300 mx-1.5">-fsSL</span>
+                    <span className="text-[#9ecbff]">https://getquestify.com/install.sh</span>
+                    <span className="text-zinc-500 mx-1.5">|</span>
+                    <span className="text-[#b392f0]">bash</span>
+                  </code>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={handleCopy}
+                    className="relative shrink-0 text-zinc-400 hover:text-zinc-50 hover:bg-zinc-800 h-7 w-7 rounded-md transition-colors"
+                    aria-label="Copy installation command"
+                  >
+                    {isCopied ? (
+                      <Check className="h-3.5 w-3.5 text-green-500" />
+                    ) : (
+                      <Copy className="h-3.5 w-3.5" />
+                    )}
+                  </Button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
