@@ -36,7 +36,7 @@ export function Hero() {
 
       {/* Mountain layer - visual anchor with parallax effect */}
       <motion.div
-        className="absolute inset-x-0 bottom-0 pointer-events-none hidden md:block"
+        className="absolute inset-x-0 bottom-0 pointer-events-none hidden lg:block"
         aria-hidden="true"
         style={{
           height: 'clamp(500px, 95vh, 1100px)',
@@ -56,7 +56,7 @@ export function Hero() {
 
       {/* Persistent bottom fade overlay - stays fixed while mountain moves */}
       <div
-        className="absolute inset-x-0 bottom-0 h-72 pointer-events-none hidden md:block z-[5] bg-gradient-to-t from-background via-background/50 to-transparent"
+        className="absolute inset-x-0 bottom-0 h-72 pointer-events-none hidden lg:block z-[5] bg-gradient-to-t from-background via-background/50 to-transparent"
         aria-hidden="true"
       />
 
