@@ -43,7 +43,7 @@ export function Hero() {
           backgroundImage: `url(${peakImage})`,
           backgroundRepeat: 'no-repeat',
           backgroundPosition: 'center top',
-          backgroundSize: '100% auto',
+          backgroundSize: 'cover',
           opacity: 0.2,
           filter: 'brightness(0.6) saturate(0.65)',
           maskImage:
