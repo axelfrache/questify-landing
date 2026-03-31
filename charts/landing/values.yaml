@@ -1,5 +1,5 @@
 image:
-  repository: registry.axelfrache.com/questify/landing
+  repository: axelfrache/questify-landing
   tag: "latest"
   pullPolicy: Always
 
