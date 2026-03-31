@@ -8,8 +8,9 @@ on:
 
 env:
   NODE_VERSION: '20'
-  REGISTRY: ${{ secrets.HARBOR_URL || 'local' }}
-  LANDING_IMAGE: ${{ secrets.HARBOR_URL && format('{0}/questify/landing', secrets.HARBOR_URL) || 'questify/landing' }}
+  DOCKERHUB_NAMESPACE: ${{ vars.DOCKERHUB_NAMESPACE || github.repository_owner }}
+  LANDING_IMAGE_NAME: ${{ vars.DOCKERHUB_IMAGE_NAME || 'questify-landing' }}
+  LANDING_IMAGE: ${{ format('{0}/{1}', vars.DOCKERHUB_NAMESPACE || github.repository_owner, vars.DOCKERHUB_IMAGE_NAME || 'questify-landing') }}
 
 jobs:
   # Format & Lint stage
@@ -104,7 +105,7 @@ jobs:
 
   # Deploy stage
   deploy:
-    name: Deploy to Harbor
+    name: Deploy to Docker Hub
     runs-on: ubuntu-latest
     needs: build-image
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
@@ -119,14 +120,27 @@ jobs:
       - name: Load Docker image
         run: docker load --input /tmp/landing-image.tar
 
-      - name: Login to Harbor Registry
+      - name: Validate Docker Hub configuration
+        env:
+          DOCKERHUB_USERNAME: ${{ vars.DOCKERHUB_USERNAME || secrets.DOCKERHUB_USERNAME }}
+          DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+        run: |
+          test -n "$DOCKERHUB_USERNAME" || {
+            echo "Missing Docker Hub username. Set GitHub variable DOCKERHUB_USERNAME (or secret DOCKERHUB_USERNAME)." >&2
+            exit 1
+          }
+          test -n "$DOCKERHUB_TOKEN" || {
+            echo "Missing Docker Hub token. Set GitHub secret DOCKERHUB_TOKEN." >&2
+            exit 1
+          }
+
+      - name: Login to Docker Hub
         uses: docker/login-action@v3
         with:
-          registry: ${{ env.REGISTRY }}
-          username: ${{ secrets.HARBOR_USERNAME }}
-          password: ${{ secrets.HARBOR_PASSWORD }}
+          username: ${{ vars.DOCKERHUB_USERNAME || secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Push image to Harbor
+      - name: Push image to Docker Hub
         run: docker push --all-tags ${{ env.LANDING_IMAGE }}
 
       - name: Summary
@@ -135,4 +149,4 @@ jobs:
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "**Landing Image:** \`${{ env.LANDING_IMAGE }}\`" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "Image successfully pushed to Harbor registry." >> $GITHUB_STEP_SUMMARY
+          echo "Image successfully pushed to Docker Hub." >> $GITHUB_STEP_SUMMARY
